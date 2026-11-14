@@ -6,7 +6,7 @@ st.markdown('<style>[data-testid="stToolbarActions"], [data-testid="stMainMenu"]
 st.title("Do the Salmon like my creek?")
 st.header("A Water Quality and Environmental DNA (eDNA) Data Visualization and Analysis Tool.\n")
 st.caption("If on mobile, click on the chevron (>>) on the top left to navigate")
-st.markdown("**Adopted by [Dry Creek Conservancy](https://www.drycreekconservancy.org/) as a community resource**")
+st.markdown("**Adopted by [Dry Creek Conservancy](https://www.drycreekconservancy.org/projects-resources/) as a community resource**")
 
 
 
