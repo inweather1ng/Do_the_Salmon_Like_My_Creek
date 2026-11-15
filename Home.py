@@ -45,13 +45,11 @@ if "dry creek" in st.session_state and "miners ravine" in st.session_state and "
         c2.metric("Conductivity", f"{latest['SPC']} µS/cm", "Healthy < 300")
         c3.metric("PH", f"{latest['PH']}", "Normal 6.5-8.5")
         c4.metric("Turbidity", f"{latest['Turbidity']} NTU", "Clear < 10")
-        c5.metric("Water Temp", f"{latest['Water Temp']} °C", "Healthy < 20")
+        c5.metric("Water Temp", f"{latest['Water Temp']} °C", "Healthy for Spring season < 18" if latest['Water Temp']<18 else("Unhealthy") if latest['Date'].month not in [10,11] else("Healthy for salmon spawning Season <13.5 C" if latest['Water Temp']<13.5 else("Unhealthy for spawning season")))
         st.page_link("pages/1_Dry_Creek_Data_Visualization.py", label="Click here to view full charts & tabs →")
 with st.container(border=True):
-    st.write("Come to the Dry Creek Conservancy's Salmon homecoming event on :red[November 8] for a :red[live presentation of this Dashboard] and more!")
-    st.write("Event will be held at Royer park")
-    st.image("pages/dcc_logo.png",width=100)
-    st.link_button(url="https://www.drycreekconservancy.org/events/",label="More info here",type="primary")
+    st.write("I will be presenting a speech on salmon and water quality at teh Effie Yeaw Nature center this month")
+
 
 
 st.header("About the Dry Creek Watershed")
