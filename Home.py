@@ -47,7 +47,7 @@ if "dry creek" in st.session_state and "miners ravine" in st.session_state and "
         c4.metric("Turbidity", f"{latest['Turbidity']} NTU", "Clear < 10")
         c5.metric("Water Temp", f"{latest['Water Temp']} °C", "Healthy for Spring season < 18" if latest['Water Temp']<18 else("Unhealthy") if latest['Date'].month not in [10,11] else("Healthy for salmon spawning Season <13.5 C" if latest['Water Temp']<13.5 else("Unhealthy for spawning season")))
         st.page_link("pages/1_Dry_Creek_Data_Visualization.py", label="Click here to view full charts & tabs →")
-with st.container(border=True):
+with st.container(border=True,width="content"):
     st.header(":red[Demo Alert!]",divider="blue")
     st.write("Cant get enough salmon facts and their :blue[Amazing] life? Come to the :blue[Effie Yeaw Nature center] this December for a live demo on Salmon and Water quality.")
     st.write("Dates will be coming soon!")
