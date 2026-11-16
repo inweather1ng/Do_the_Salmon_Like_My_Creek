@@ -54,7 +54,7 @@ with st.container(border=True,width="content"):
     st.write("Dates will be coming soon!")
 
 if os.path.exists("salmon_creek.mp4"):
-    st.subheader("🐟  Chinook Salmon are here! Spotted on Nov 15th swimming upstream by Saugstead park. Welcome Home!!")
+    st.subheader("🐟  Chinook Salmon are here! Spotted on Nov 15th 2026 swimming upstream by Saugstead park. Welcome Home!!")
     v1, v2, v3 = st.columns([3, 2, 3])
     with v2:
         st.video("salmon_creek.mp4")
