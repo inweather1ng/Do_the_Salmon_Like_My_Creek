@@ -688,12 +688,12 @@ elif selected_tab=="Parameter deep dive":
 
         )
     fig4.update_layout(
-    yaxis_range=[4,10],
+    yaxis_range=[4,11],
     xaxis=dict(tickformat="%m/%d/%Y"),
     shapes=[
             dict(xref="paper",yref="y",x0=0,x1=1,y0=4,y1=5,fillcolor="red",opacity=0.5,layer="below",line_width=0),
             dict(xref="paper",yref="y",x0=0,x1=1,y0=5,y1=7,fillcolor="yellow",opacity=0.5,layer="below",line_width=0),
-            dict(xref="paper",yref="y",x0=0,x1=1,y0=7,y1=10,fillcolor="green",opacity=0.5,layer="below",line_width=0)
+            dict(xref="paper",yref="y",x0=0,x1=1,y0=7,y1=11,fillcolor="green",opacity=0.5,layer="below",line_width=0)
 
         ]
         )
