@@ -341,12 +341,12 @@ if selected_tab=="Overview":
             )
         with col5:
             temp_healthy=(
-                "Sustainable"
-                if latest_temp>=10 and latest_temp<=18
-                else("Hot" if latest_temp>18 else "cold")
+                "Healthy For Salmon Spawning"
+                if latest_temp>=0 and latest_temp<=13.5
+                else("Too warm for spawning" if latest_temp<18 else "Unhealthy")
             )
             color=(
-                "normal"if latest_temp>=10 and latest_temp<=18 else"inverse"
+                "normal"if latest_temp>=0 and latest_temp<=13.5 else"inverse"
             )
             st.metric(
                 label="Water temperature",
