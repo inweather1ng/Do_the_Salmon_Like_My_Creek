@@ -17,7 +17,7 @@ import plotly.express as px
 import smtplib
 from email.message import EmailMessage
 from profanity_check import predict,predict_prob
-
+import streamlit.components.v1 as components
 
 qpcr=pd.read_csv("QPCR.csv")
 st.markdown(
@@ -676,15 +676,14 @@ elif selected_tab=="Parameter deep dive":
     site=site.copy()
     site.sort_values('Date')
         
-    fig4=px.line(
+    fig4=px.scatter(
             site,
             x=site['Date'],
             y=site['DO'],
-            markers=True,
             labels={"Date":"Date","DO":"DO"}
         )
     fig4.update_traces(
-    line=dict(color="brown"),marker=dict(color="brown",size=8,symbol="circle")
+    marker=dict(color="brown",size=8,symbol="circle")
 
         )
     fig4.update_layout(
@@ -729,15 +728,13 @@ Critical / Hypoxia: < 5.0 mg/L (Causes severe stress or fish kills)
         
 
 
-    fig5=px.line(
+    fig5=px.scatter(
             site,
             x=site['Date'],
             y=site['SPC'],
-            markers=True,
             labels={"Date":"Date","SPC":"SPC"}
         )
-    fig5.update_traces(
-    line=dict(color="brown"),marker=dict(color="green",size=8,symbol="circle")
+    fig5.update_traces(marker=dict(color="green",size=8,symbol="circle")
 
         )
     fig5.update_layout(
@@ -786,11 +783,9 @@ Significant Runoff Pollution: > 500 µS/cm
     site,
     x=site['Date'],
     y=site['PH'],
-    markers=True,
     labels={"Date":"Date","PH":"PH"}
         )
-    fig6.update_traces(
-    line=dict(color="brown"),marker=dict(color="brown",size=8,symbol="circle")
+    fig6.update_traces(marker=dict(color="brown",size=8,symbol="circle")
 
         )
     fig6.update_layout(
@@ -842,11 +837,9 @@ Alkaline Warning: > 8.5
         site,
         x=site['Date'],
         y=site['Turbidity'],
-        markers=True,
         labels={"Date":"Date","Turbidity":"Turbidity"}
         )
-    fig7.update_traces(
-    line=dict(color="brown"),marker=dict(color="brown",size=8,symbol="circle")
+    fig7.update_traces(marker=dict(color="brown",size=8,symbol="circle")
 
         )
     fig7.update_layout(
@@ -897,11 +890,9 @@ Heavy Erosion / Storm Event: > 50 NTU
     site,
     x=site['Date'],
     y=site['Water Temp'],
-    markers=True,
     labels={"Date":"Date","Water Temp":"Water Temp"}
     )
-    fig.update_traces(
-    line=dict(color="brown"),marker=dict(color="brown",size=8,symbol="circle")
+    fig.update_traces(marker=dict(color="brown",size=8,symbol="circle")
 
         )
     fig.update_layout(
