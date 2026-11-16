@@ -36,7 +36,7 @@ if "dry creek" not in st.session_state or "miners ravine" not in st.session_stat
 # """)
 if "dry creek" in st.session_state and "miners ravine" in st.session_state and "secret ravine" in st.session_state:
     with st.container(border=True):
-        st.subheader("Salmon Health Status: GOOD 🐟")
+        st.subheader("Salmon Health Status: GOOD For Spawning🐟" if st.session_state["miners ravine"].iloc[-1]['Water Temp']<13.5 and st.session_state["dry creek"].iloc[-1]['Water Temp']<13.5 and st.session_state["secret ravine"].iloc[-1]['Water Temp']<13.5 else("Too warm for spawning at one or more sites"))
         st.write("All 3 sites (Secret Ravine, Saugstad Park, and Miners Ravine) currently meet healthy thresholds for salmon!")
         site = st.radio("Select site to check salmon factors:", ["Miners Ravine", "Saugstad Park", "Secret Ravine"], horizontal=True)
         latest = st.session_state["miners ravine"].iloc[-1] if site == "Miners Ravine" else (st.session_state["dry creek"].iloc[-1] if site == "Saugstad Park" else st.session_state["secret ravine"].iloc[-1])
