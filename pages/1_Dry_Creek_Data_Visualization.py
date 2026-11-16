@@ -747,7 +747,7 @@ Critical / Hypoxia: < 5.0 mg/L (Causes severe stress or fish kills)
 
         ]
         )
-    chart=st.plotly_chart(fig5,use_container_width=True,selection_mode="points",key=f"{x} SPC",on_select="rerun",theme="None")
+    chart=st.plotly_chart(fig5,use_container_width=True,selection_mode="points",key=f"{x} SPC",on_select="rerun",theme=None)
 
     if chart and chart.get('selection',{}).get('points'):
         point=chart['selection']['points'][0]
