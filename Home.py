@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 st.set_page_config(page_title="Do the Salmon like my creek?",layout="wide",page_icon="🐟")
@@ -71,6 +72,11 @@ with col1:
     
 with col2:
     st.write("The Dry Creek watershed stretches across 101 square miles through Placer and Sacramento counties. Native Fall-run Chinook Salmon and threatened Central Valley Steelhead Trout return to Dry Creek to spawn. ")
+    if os.path.exists("salmon_creek.mp4"):
+        st.markdown("**🐟 Watch Chinook Salmon Swimming Upstream:**")
+        v1, v2, v3 = st.columns([1, 2, 1])
+        with v2:
+            st.video("salmon_creek.mp4")
 
 st.link_button(url="https://drycreekconservancy.org",label="Learn more about the Dry Creek Conservancy")
 
