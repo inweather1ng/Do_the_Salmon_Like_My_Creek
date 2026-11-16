@@ -53,6 +53,11 @@ with st.container(border=True,width="content"):
     st.write("# Can't get enough salmon facts and their :blue[Amazing] life? Come to the :blue[Effie Yeaw Nature center] this December for a live demo on Salmon and Water quality.")
     st.write("Dates will be coming soon!")
 
+if os.path.exists("salmon_creek.mp4"):
+    st.subheader("🐟  Chinook Salmon are here! Spotted on Nov 15th swimming upstream by Saugstead park. Welcome Home!!")
+    v1, v2, v3 = st.columns([3, 2, 3])
+    with v2:
+        st.video("salmon_creek.mp4")
 
 
 st.header("About the Dry Creek Watershed")
@@ -72,11 +77,7 @@ with col1:
     
 with col2:
     st.write("The Dry Creek watershed stretches across 101 square miles through Placer and Sacramento counties. Native Fall-run Chinook Salmon and threatened Central Valley Steelhead Trout return to Dry Creek to spawn. ")
-    if os.path.exists("salmon_creek.mp4"):
-        st.markdown("**🐟 Watch Chinook Salmon Swimming Upstream:**")
-        v1, v2, v3 = st.columns([1, 2, 1])
-        with v2:
-            st.video("salmon_creek.mp4")
+
 
 st.link_button(url="https://drycreekconservancy.org",label="Learn more about the Dry Creek Conservancy")
 
