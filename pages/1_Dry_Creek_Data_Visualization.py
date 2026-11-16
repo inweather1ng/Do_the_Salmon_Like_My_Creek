@@ -993,7 +993,7 @@ elif selected_tab=="Comparative analysis":
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%b"))
     if len(param)==2:
         if param=="DO":
-            ax.set_ylim(5,111
+            ax.set_ylim(5,11)
             ax1.set_ylim(5,11)
             ax.axhspan(5,6,color="red")
             ax.axhspan(6,7,color="yellow")
