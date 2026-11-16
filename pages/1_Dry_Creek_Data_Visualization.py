@@ -451,12 +451,12 @@ if selected_tab=="Overview":
             )
         with col5:
             temp_healthy=(
-                "Healthy"
-                if  latest_temp<=18
-                else ("Warm" if latest_temp <= 21 else "Hot")
+                "Healthy for Salmon Spawning"
+                if  latest_temp<=13.5
+                else ("Unstuiable for spawning" if latest_temp <= 18 else "Unhealthy For All Salmon")
             )
             color=(
-                "normal"if latest_temp>=10 and latest_temp<=18 else"inverse"
+                "normal"if latest_temp<=13.5 else"inverse"
             )
             st.metric(
                 label="Water temperature",
@@ -575,11 +575,11 @@ if selected_tab=="Overview":
                 delta_color=color
             )
     miners_lat=miners_ravine.iloc[-1]
-    miners_ravine_health = miners_lat['DO']>7 and miners_lat['PH'] > 6.5 and miners_lat['PH']<8.5 and miners_lat['Turbidity']<10 and miners_lat['Water Temp']<18 and miners_lat["SPC"]<300
+    miners_ravine_health = miners_lat['DO']>7 and miners_lat['PH'] > 6.5 and miners_lat['PH']<8.5 and miners_lat['Turbidity']<25 and miners_lat['Water Temp']<18 and miners_lat["SPC"]<300
     dry_lat=dry_creek.iloc[-1]
-    dry_creek_health = dry_lat['DO']>7 and dry_lat['PH'] > 6.5 and dry_lat['PH']<8.5 and dry_lat['Turbidity']<10 and dry_lat['Water Temp']<18 and dry_lat["SPC"]<300
+    dry_creek_health = dry_lat['DO']>7 and dry_lat['PH'] > 6.5 and dry_lat['PH']<8.5 and dry_lat['Turbidity']<25 and dry_lat['Water Temp']<18 and dry_lat["SPC"]<300
     sr_lat=secret_ravine.iloc[-1]
-    sr_health = sr_lat['DO']>7 and sr_lat['PH'] > 6.5 and sr_lat['PH']<8.5 and sr_lat['Turbidity']<10 and sr_lat['Water Temp']<18 and sr_lat["SPC"]<300
+    sr_health = sr_lat['DO']>7 and sr_lat['PH'] > 6.5 and sr_lat['PH']<8.5 and sr_lat['Turbidity']<25 and sr_lat['Water Temp']<18 and sr_lat["SPC"]<300
     if miners_ravine_health:
         miners_status = "Healthy"
     else:
@@ -993,11 +993,11 @@ elif selected_tab=="Comparative analysis":
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%b"))
     if len(param)==2:
         if param=="DO":
-            ax.set_ylim(5,10)
-            ax1.set_ylim(5,10)
+            ax.set_ylim(5,111
+            ax1.set_ylim(5,11)
             ax.axhspan(5,6,color="red")
             ax.axhspan(6,7,color="yellow")
-            ax.axhspan(7,10,color="green")
+            ax.axhspan(7,11,color="green")
 
         else:
             ax.set_ylim(3,9)
