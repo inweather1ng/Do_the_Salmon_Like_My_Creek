@@ -683,7 +683,7 @@ elif selected_tab=="Parameter deep dive":
             labels={"Date":"Date","DO":"DO"}
         )
     fig4.update_traces(
-    marker=dict(color="brown",size=16,symbol="circle")
+    marker=dict(color="#8B4513",opacity=1,size=16,symbol="circle")
 
         )
     fig4.update_layout(
@@ -734,7 +734,7 @@ Critical / Hypoxia: < 5.0 mg/L (Causes severe stress or fish kills)
             y=site['SPC'],
             labels={"Date":"Date","SPC":"SPC"}
         )
-    fig5.update_traces(marker=dict(color="green",size=16,symbol="circle")
+    fig5.update_traces(marker=dict(color="#8B4513",opacity=1,size=16,symbol="circle")
 
         )
     fig5.update_layout(
@@ -785,7 +785,7 @@ Significant Runoff Pollution: > 500 µS/cm
     y=site['PH'],
     labels={"Date":"Date","PH":"PH"}
         )
-    fig6.update_traces(marker=dict(color="brown",size=16,symbol="circle")
+    fig6.update_traces(marker=dict(color="#8B4513",opacity=1,size=16,symbol="circle")
 
         )
     fig6.update_layout(
@@ -839,7 +839,7 @@ Alkaline Warning: > 8.5
         y=site['Turbidity'],
         labels={"Date":"Date","Turbidity":"Turbidity"}
         )
-    fig7.update_traces(marker=dict(color="brown",size=8,symbol="circle")
+    fig7.update_traces(marker=dict(color="#8B4513",opacity=1,size=16,symbol="circle")
 
         )
     fig7.update_layout(
@@ -892,7 +892,7 @@ Heavy Erosion / Storm Event: > 50 NTU
     y=site['Water Temp'],
     labels={"Date":"Date","Water Temp":"Water Temp"}
     )
-    fig.update_traces(marker=dict(color="brown",size=16,symbol="circle")
+    fig.update_traces(marker=dict(color="#8B4513",opacity=1,size=16,symbol="circle")
 
         )
     fig.update_layout(
@@ -941,7 +941,7 @@ High Thermal Stress: > 21.0°C (Significantly reduces oxygen-holding capacity)
     st.space("small")
     fig8=px.line(site,x=site["Date"],y=site["Air Temp"],markers=True,labels={"Date":"date","Air Temp":"Air Temp"})
     fig8.update_traces(
-        line=dict(color="brown"),marker=dict(size=8,symbol="circle")
+        line=dict(color="brown"),marker=dict(color="#8B4513",opacity=1,size=8,symbol="circle")
     )
     fig.update_layout(yaxis_range=[0,30],xaxis=dict(tickformat="%m/%d/%Y"))
     chart=st.plotly_chart(fig8,use_container_width=True,selection_mode="points",key=f"{x} Air Temperature",on_select="rerun")
