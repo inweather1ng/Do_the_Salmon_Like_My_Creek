@@ -49,7 +49,7 @@ if "dry creek" in st.session_state and "miners ravine" in st.session_state and "
         st.page_link("pages/1_Dry_Creek_Data_Visualization.py", label="Click here to view full charts & tabs →")
 with st.container(border=True,width="content"):
     st.header(":red[Demo Alert!]",divider="blue")
-    st.write("# Cant get enough salmon facts and their :blue[Amazing] life? Come to the :blue[Effie Yeaw Nature center] this December for a live demo on Salmon and Water quality.")
+    st.write("# Can't get enough salmon facts and their :blue[Amazing] life? Come to the :blue[Effie Yeaw Nature center] this December for a live demo on Salmon and Water quality.")
     st.write("Dates will be coming soon!")
 
 
