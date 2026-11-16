@@ -734,7 +734,7 @@ Critical / Hypoxia: < 5.0 mg/L (Causes severe stress or fish kills)
             y=site['SPC'],
             labels={"Date":"Date","SPC":"SPC"}
         )
-    fig5.update_traces(marker=dict(color="green",size=8,symbol="circle")
+    fig5.update_traces(marker=dict(color="green",size=16,symbol="circle")
 
         )
     fig5.update_layout(
@@ -747,7 +747,7 @@ Critical / Hypoxia: < 5.0 mg/L (Causes severe stress or fish kills)
 
         ]
         )
-    chart=st.plotly_chart(fig5,use_container_width=True,selection_mode="points",key=f"{x} SPC",on_select="rerun",theme=None)
+    chart=st.plotly_chart(fig5,use_container_width=True,selection_mode="points",key=f"{x} SPC",on_select="rerun")
 
     if chart and chart.get('selection',{}).get('points'):
         point=chart['selection']['points'][0]
@@ -779,13 +779,13 @@ Significant Runoff Pollution: > 500 µS/cm
         
 
     st.space("small")
-    fig6=px.line(
+    fig6=px.scatter(
     site,
     x=site['Date'],
     y=site['PH'],
     labels={"Date":"Date","PH":"PH"}
         )
-    fig6.update_traces(marker=dict(color="brown",size=8,symbol="circle")
+    fig6.update_traces(marker=dict(color="brown",size=16,symbol="circle")
 
         )
     fig6.update_layout(
@@ -892,7 +892,7 @@ Heavy Erosion / Storm Event: > 50 NTU
     y=site['Water Temp'],
     labels={"Date":"Date","Water Temp":"Water Temp"}
     )
-    fig.update_traces(marker=dict(color="brown",size=8,symbol="circle")
+    fig.update_traces(marker=dict(color="brown",size=16,symbol="circle")
 
         )
     fig.update_layout(
