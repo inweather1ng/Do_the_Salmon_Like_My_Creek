@@ -683,7 +683,7 @@ elif selected_tab=="Parameter deep dive":
             labels={"Date":"Date","DO":"DO"}
         )
     fig4.update_traces(
-    marker=dict(color="brown",size=8,symbol="circle")
+    marker=dict(color="brown",size=16,symbol="circle")
 
         )
     fig4.update_layout(
@@ -747,7 +747,7 @@ Critical / Hypoxia: < 5.0 mg/L (Causes severe stress or fish kills)
 
         ]
         )
-    chart=st.plotly_chart(fig5,use_container_width=True,selection_mode="points",key=f"{x} SPC",on_select="rerun")
+    chart=st.plotly_chart(fig5,use_container_width=True,selection_mode="points",key=f"{x} SPC",on_select="rerun",theme="None")
 
     if chart and chart.get('selection',{}).get('points'):
         point=chart['selection']['points'][0]
@@ -833,7 +833,7 @@ Alkaline Warning: > 8.5
 """,unsafe_allow_html=False)
     st.space("small")
         
-    fig7=px.line(
+    fig7=px.scatter(
         site,
         x=site['Date'],
         y=site['Turbidity'],
@@ -886,7 +886,7 @@ Heavy Erosion / Storm Event: > 50 NTU
 """,unsafe_allow_html=False)
     st.space("small")
         
-    fig=px.line(
+    fig=px.scatter(
     site,
     x=site['Date'],
     y=site['Water Temp'],
