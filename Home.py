@@ -50,8 +50,8 @@ if "dry creek" in st.session_state and "miners ravine" in st.session_state and "
         st.page_link("pages/1_Dry_Creek_Data_Visualization.py", label="Click here to view full charts & tabs →")
 with st.container(border=True,width="content"):
     st.header(":red[Demo Alert!]",divider="blue")
-    st.write("# Can't get enough salmon facts and their :blue[Amazing] life? Come to the :blue[Effie Yeaw Nature center] this December for a live demo on Salmon and Water quality.")
-    st.write("Dates will be coming soon!")
+    st.write("# Can't get enough salmon facts and their :blue[Amazing] life? Come to the :blue[Effie Yeaw Nature center] this December for a Salmon talk and live demo of this app")
+    st.link_button(label="More info here",url="https://www.effieyeawnature.org/event-details/do-the-salmon-like-my-stream")
 
 if os.path.exists("salmon_creek.mp4"):
     st.subheader("🐟  Chinook Salmon are here! Spotted on Nov 15th 2026 swimming upstream by Saugstead park. Welcome Home!!")
