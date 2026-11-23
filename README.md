@@ -31,10 +31,10 @@ Follow these steps to run the tool on your machine:
 
 
 ### 1. Prerequisites
-Make sure you have Python installed. Clone the repository and navigate into the project folder.
+Make sure you have Python and git installed.
 
 ### 2. Clone the Repository
-Make sure you have Python installed, then clone this repository and navigate into the project folder:
+Clone this repository and navigate into the project folder:
 ```bash
 git clone https://github.com/inweather1ng/Do_the_Salmon_Like_My_Creek.git
 cd Do_the_Salmon_Like_My_Creek
@@ -51,7 +51,7 @@ pip install -r requirements.txt
 streamlit run Home.py
 
 ```
-You are all set!
+## You are all set!
 
 
 
