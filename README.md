@@ -54,6 +54,7 @@ streamlit run Home.py
 ## You are all set!
 
 
-
+## Copyright
+© 2026 [Jayan Bandhu]. All rights reserved.
 
 
