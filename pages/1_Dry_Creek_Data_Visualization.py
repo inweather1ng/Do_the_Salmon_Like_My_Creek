@@ -905,9 +905,11 @@ Heavy Erosion / Storm Event: > 50 NTU
             yaxis_range=[10,30],
             xaxis=dict(tickformat="%m/%d/%Y"),
             shapes=[
-                dict(xref="paper",yref="y",x0=0,x1=1,y0=10,y1=18,fillcolor="green",opacity=0.5,layer="below",line_width=0),
-                dict(xref="paper",yref="y",x0=0,x1=1,y0=18,y1=25,fillcolor="yellow",opacity=0.5,layer="below",line_width=0),
-                dict(xref="paper",yref="y",x0=0,x1=1,y0=25,y1=30,fillcolor="red",opacity=0.5,layer="below",line_width=0)
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=10,y1=13,fillcolor="#005500",opacity=0.5,layer="below",line_width=0),
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=13,y1=14,fillcolor="#00AA00",opacity=0.5,layer="below",line_width=0),
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=14,y1=16,fillcolor="#00FE00",opacity=0.5,layer="below",line_width=0),
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=16,y1=20,fillcolor="yellow",opacity=0.5,layer="below",line_width=0),
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=20,y1=30,fillcolor="red",opacity=0.5,layer="below",line_width=0)
 
             ]
         )
