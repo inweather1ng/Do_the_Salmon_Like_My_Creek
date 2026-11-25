@@ -913,7 +913,7 @@ Heavy Erosion / Storm Event: > 50 NTU
 
             ]
         )
-    chart=st.plotly_chart(fig,use_container_width=True,selection_mode="points",key=f"{x} Water Temperature",on_select="rerun")
+    chart=st.plotly_chart(fig,use_container_width=True,selection_mode="points",key=f"{site} Water Temperature",on_select="rerun")
 
     if chart and chart.get('selection',{}).get('points'):
         point=chart['selection']['points'][0]
