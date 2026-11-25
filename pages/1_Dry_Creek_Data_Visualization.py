@@ -341,12 +341,12 @@ if selected_tab=="Overview":
             )
         with col5:
             temp_healthy=(
-                "Healthy For Salmon Spawning"
-                if latest_temp>=0 and latest_temp<=13.5
-                else("Too warm for spawning" if latest_temp<18 else "Unhealthy")
+                "Healthy For Salmon Incubation"
+                if latest_temp<=13
+                else("Healthy for salmon spawning" if latest_temp<14 else ("Unhealthy for Spawning, healthy for juveniles" if latest_temp<=16 else("Stressful" if latest_temp <=20 else("High Risk"))))
             )
             color=(
-                "normal"if latest_temp>=0 and latest_temp<=13.5 else"inverse"
+                "normal"if latest_temp>=0 and latest_temp<=16 else"inverse"
             )
             st.metric(
                 label="Water temperature",
@@ -451,12 +451,12 @@ if selected_tab=="Overview":
             )
         with col5:
             temp_healthy=(
-                "Healthy for Salmon Spawning"
+                "Healthy for Incubation"
                 if  latest_temp<=13.5
-                else ("Unstuiable for spawning" if latest_temp <= 18 else "Unhealthy For All Salmon")
+                else("Healthy for salmon spawning" if latest_temp<14 else ("Unhealthy for Spawning, healthy for juveniles" if latest_temp<=16 else("Stressful" if latest_temp <=20 else("High Risk"))))
             )
             color=(
-                "normal"if latest_temp<=13.5 else"inverse"
+                "normal"if latest_temp<=16 else"inverse"
             )
             st.metric(
                 label="Water temperature",
@@ -561,12 +561,12 @@ if selected_tab=="Overview":
             )
         with col5:
             temp_healthy=(
-                "Healthy"
-                if  latest_temp<=18
-                else ("Warm" if latest_temp <= 18 else "Hot")
+                "Healthy for incubation"
+                if  latest_temp<=13
+                else("Healthy for salmon spawning" if latest_temp<14 else ("Unhealthy for Spawning, healthy for juveniles" if latest_temp<=16 else("Stressful" if latest_temp <=20 else("High Risk"))))
             )
             color=(
-                "normal"if latest_temp>=10 and latest_temp<=18 else"inverse"
+                "normal" if latest_temp<=16 else"inverse"
             )
             st.metric(
                 label="Water temperature",
@@ -673,6 +673,12 @@ elif selected_tab=="Parameter deep dive":
             window.parent.scrollTo(0, 0);
         </script>""", height=0)
     site=dry_creek if x=="Dry Creek at Saugstad" else(miners_ravine if x=="Miners Ravine at Orivetto Drive" else secret_ravine)
+    #if site==dry_creek:
+        #st.image()
+    #elif site==miners_ravine:
+        #st.image()
+    #else:
+        #st.image()
     site=site.copy()
     site.sort_values('Date')
         
@@ -909,13 +915,16 @@ Heavy Erosion / Storm Event: > 50 NTU
 
     if chart and chart.get('selection',{}).get('points'):
         point=chart['selection']['points'][0]
-        if point.get('y')>25:
+        if point.get('y')>20:
             temp_healthy="Too warm for Salmon survival"
         
-        elif point.get('y')>18:
-            temp_healthy="Upper limit for Salmon"
+        elif point.get('y')>16:
+            temp_healthy="Upper limit for Juveniles"
         else:
-            temp_healthy="Healthy"
+            if point.get('y')>14:
+                temp_healthy="Helathy for spawning"
+            elif point.get('y')<14:
+                temp_healthy="Healthy for incubation"
         st.info(f"Date: {point.get('x')} Water Temperature: {point.get('y')}, {temp_healthy}")
     st.markdown("""**Water Temperature**
 
