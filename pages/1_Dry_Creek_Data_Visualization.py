@@ -991,6 +991,13 @@ High Thermal Stress: > 21.0°C (Significantly reduces oxygen-holding capacity)
 
 """,unsafe_allow_html=False)
     st.space("small")
+    temp=(
+        site.groupby("Water Level",as_index=False)['Water Temp']
+        .mean()
+    )
+    fig=px.bar(temp,x="Water Level",y="Water Temp",color="Water Level",labels={"Water Level":"Flow","Water Temp":"Water Temp"})
+    st.plotly_chart(fig)
+    
     fig8=px.line(site,x=site["Date"],y=site["Air Temp"],markers=True,labels={"Date":"date","Air Temp":"Air Temp"})
     fig8.update_traces(
         line=dict(color="brown"),marker=dict(color="#8B4513",opacity=1,size=8,symbol="circle")
