@@ -66,7 +66,7 @@ def censor(message):
 
 
 # --- Helper Function for Plotly Interactive Shaded Threshold Zones ---
-def pdf_download(prompt,miners_ravine,dry_creek):
+def pdf_download(miners_ravine,dry_creek,secret_ravine):
     params=["DO","SPC","Turbidity","PH","Water Temp"]
     sites=["Miners Ravine","Dry Creek","Secret Ravine"]
     param=st.selectbox(label="Choose a parameter",options=params)
@@ -335,7 +335,7 @@ if selected_tab=="Overview":
             )
         with col5:
             temp_healthy=(
-                "Healthy For the Salmon egg Incubation period"
+                "Healthy For the Salmon egg Incubation"
                 if latest_temp<=13
                 else("Healthy for salmon spawning" if latest_temp<14 else ("Unhealthy for Spawning, healthy for juveniles" if latest_temp<=16 else("Stressful" if latest_temp <=20 else("High Risk"))))
             )
@@ -445,7 +445,7 @@ if selected_tab=="Overview":
             )
         with col5:
             temp_healthy=(
-                "Healthy For the Salmon egg Incubation period"
+                "Healthy For the Salmon egg Incubation"
                 if  latest_temp<=13.5
                 else("Healthy for salmon spawning" if latest_temp<14 else ("Unhealthy for Spawning, healthy for juveniles" if latest_temp<=16 else("Healthy for Adult Salmon" if latest_temp <=20 else("High Risk"))))
             )
@@ -555,7 +555,7 @@ if selected_tab=="Overview":
             )
         with col5:
             temp_healthy=(
-                "Healthy For the Salmon egg Incubation period"
+                "Healthy For the Salmon egg Incubation"
                 if  latest_temp<=13
                 else("Healthy for salmon spawning" if latest_temp<14 else ("Unhealthy for Spawning, healthy for juveniles" if latest_temp<=16 else("Healthy for Adult salmon" if latest_temp <=20 else("High Risk"))))
             )
@@ -783,7 +783,7 @@ Thresholds:
 <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
     <div style="display: flex; align-items: center; gap: 10px;">
         <span style="min-width: 16px; height: 16px; background-color: rgba(0, 85, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
-        <span><strong>Salmon egg incubation period:</strong> &lt; 13.0°C</span>
+        <span><strong>Salmon egg incubation:</strong> &lt; 13.0°C</span>
     </div>
     <div style="display: flex; align-items: center; gap: 10px;">
         <span style="min-width: 16px; height: 16px; background-color: rgba(0, 170, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
@@ -1255,7 +1255,7 @@ elif selected_tab=="Correlation analysis":
             st.metric(value=dry_creekcorr,label="Correlation coefficient(r) for dry creek site",delta=txt2+","+sign2,delta_color="normal" if abs(dry_creekcorr)>0.7 else "inverse")
 elif selected_tab=="PDF download":
 
-        pdf_download(userinput,miners_ravine,dry_creek)
+        pdf_download(miners_ravine,dry_creek,secret_ravine)
 elif selected_tab=="eDNA results":
     st.title("Environmental DNA (eDNA) Analysis")
     st.subheader("New Zealand Mudsnails")
