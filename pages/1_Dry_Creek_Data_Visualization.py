@@ -607,7 +607,7 @@ if selected_tab=="Overview":
          }
     )
     map=folium.Map(location=[38.75,-121.26],zoom_start=13)
-    WmsLayer(
+    WmsTileLayer(
         url="https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
         layers="nexrad-n0r-900q",
         format="image/png",
