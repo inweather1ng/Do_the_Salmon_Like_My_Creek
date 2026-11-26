@@ -85,21 +85,21 @@ def pdf_download(miners_ravine,dry_creek,secret_ravine):
         table_data=[["Date", f"{param} Value","Evaluation"]]
         for _,row in finaldf.iterrows():
             date_str = row['Date']
-            val=row[parameter]
-            if parameter=="DO":
+            val=row[param]
+            if param=="DO":
                 status="healthy" if val>7 else "suboptimal"
-            elif parameter=="SPC":
+            elif param=="SPC":
                 status="healthy" if val<300 else "suboptimal"
-            elif parameter=="PH":
+            elif param=="PH":
                 status="healthy" if val>6.5 and val<8.5 else "suboptimal"
-            elif parameter=="Turbidity":
+            elif param=="Turbidity":
                 status="healthy" if val<10 else "suboptimal"
             else:
                 status="healthy" if val>10 and val<20 else "suboptimal"
             table_data.append([date_str,val,status])
-        avgval = finaldf[parameter].mean()
-        minvl = finaldf[parameter].min()
-        maxvL = finaldf[parameter].max()
+        avgval = finaldf[param].mean()
+        minvl = finaldf[param].min()
+        maxvL = finaldf[param].max()
         table_data.append(["average",round(avgval,2),""])
         table_data.append(["minimum",round(minvl,2),""])
         table_data.append(["maximum",round(maxvL,2),""])
@@ -128,13 +128,13 @@ def pdf_download(miners_ravine,dry_creek,secret_ravine):
             
 
         fig3,ax3=plt.subplots(figsize=(4,4))
-        sns.lineplot(data=finaldf,x="Date",y=parameter,marker="o")
+        sns.lineplot(data=finaldf,x="Date",y=param,marker="o")
         ax3.tick_params(axis='x',labelsize=6)
-        ax3.set_title(f"Data report for {parameter} over a {len(finaldf[parameter])} month period for the {site} site")
+        ax3.set_title(f"Data report for {param} over a {len(finaldf[param])} month period for the {site} site")
         img_buffer=io.BytesIO()
         fig3.savefig(img_buffer,format="png",bbox_inches="tight")
         img_buffer.seek(0)
-        if parameter=="DO":
+        if param=="DO":
             thresholdstr="""Thresholds:
 
         Healthy: > 7.0 mg/L (Supports thriving aquatic life and salmonid requirements)
@@ -142,7 +142,7 @@ def pdf_download(miners_ravine,dry_creek,secret_ravine):
         Moderate Stress: 5.0 to 7.0 mg/L
 
         Critical / Hypoxia: < 5.0 mg/L (Causes severe stress or fish kills)"""
-        elif parameter=="PH":
+        elif param=="PH":
             thresholdstr="""Thresholds:
 
 Healthy Basin Standard: 6.5 to 8.5 (Central Valley Regional Water Quality Control Board standard for inland surface waters)
@@ -150,14 +150,14 @@ Healthy Basin Standard: 6.5 to 8.5 (Central Valley Regional Water Quality Contro
 Acidic Warning: < 6.5
 
 Alkaline Warning: > 8.5"""
-        elif parameter=="SPC":
+        elif param=="SPC":
             thresholdstr="""Natural Baseline: 100 to 300 µS/cm (Typical for Sierra foothill-fed valley streams)
 
 Elevated Urban Impact: 300 to 500 µS/cm
 
 Significant Runoff Pollution: > 500 µS/cm"""
         else:
-            if parameter=="Turbidity":
+            if param=="Turbidity":
                 thresholdstr="""Clear / Base Flow: < 10 NTU
 
 Moderate Runoff / Storm Impact: 10 to 50 NTU
@@ -190,7 +190,7 @@ High Thermal Stress: > 21.0°C (Significantly reduces oxygen-holding capacity)""
         if st.button(label="View Preview"):
             b=not b
         if(b):
-            st.write(f"Data report for {parameter} over a {len(finaldf[parameter])} month period for the {site} site")
+            st.write(f"Data report for {param} over a {len(finaldf[param])} month period for the {site} site")
             st.pyplot(fig3)
             st.space("small")
             st.markdown(f"Summary of values over a {y} Month Period")
