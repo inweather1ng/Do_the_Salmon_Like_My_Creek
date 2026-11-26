@@ -69,17 +69,9 @@ def censor(message):
 def pdf_download(prompt,miners_ravine,dry_creek):
     params=["DO","SPC","Turbidity","PH","Water Temp"]
     sites=["Miners Ravine","Dry Creek","Secret Ravine"]
-    parameter=""
-    site=""
-    for i in params:
-        if i.lower() in prompt.lower():
-            parameter=i
-            break
-    for x in sites:
-        if x.lower() in prompt.lower():
-            site=x
-            break
-    param=parameter
+    param=st.selectbox(label="Choose a parameter",options=params)
+    site=st.selectbox(label="Choose a site",options=sites)
+
     if param==""or site=="":
         st.warning("Command not recognized")
     else:
@@ -795,29 +787,29 @@ Thresholds:
     </div>
     <div style="display: flex; align-items: center; gap: 10px;">
         <span style="min-width: 16px; height: 16px; background-color: rgba(0, 170, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
-        <span><strong>Salmon Spawning:</strong> 13.0 - 14.0°C</span>
+        <span><strong>Salmon Spawning:</strong> &lt; 14.0°C</span>
     </div>
     <div style="display: flex; align-items: center; gap: 10px;">
         <span style="min-width: 16px; height: 16px; background-color: rgba(0, 222, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
-        <span><strong>Juvenile Salmon:</strong> 14.0 - 16.0°C</span>
+        <span><strong>Juvenile Salmon:</strong> &lt; 16.0°C</span>
     </div>
     <div style="display: flex; align-items: center; gap: 10px;">
         <span style="min-width: 16px; height: 16px; background-color: rgba(0, 255, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
-        <span><strong>Adult Salmon:</strong> 16.0 - 18.0°C</span>
+        <span><strong>Adult Salmon:</strong> &lt; 18.0°C</span>
     </div>
     <div style="display: flex; align-items: center; gap: 10px;">
         <span style="min-width: 16px; height: 16px; background-color: rgba(255, 255, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
-        <span><strong>High Stress:</strong>18.0 - 21.0°C</span>
+        <span><strong>Stressful:</strong>18.0 - 21.0°C</span>
     </div>
     <div style="display: flex; align-items: center; gap: 10px;">
         <span style="min-width: 16px; height: 16px; background-color: rgba(255, 8.585, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
-        <span><strong></strong> &gt; "Too Warm For Salmon"> 21°C</span>
+        <span><strong>Too Warm For Salmon:</strong> &gt; 21.0°C</span>
     </div>
 </div>
 
 
 
-#E:
+
 
 
 
@@ -1262,9 +1254,8 @@ elif selected_tab=="Correlation analysis":
         with col2:
             st.metric(value=dry_creekcorr,label="Correlation coefficient(r) for dry creek site",delta=txt2+","+sign2,delta_color="normal" if abs(dry_creekcorr)>0.7 else "inverse")
 elif selected_tab=="PDF download":
-        userinput=st.text_input(label="Give a prompt for what parameter you want to download and which site you want to download (for temperature specify air or water).")
-        if userinput.strip():
-            pdf_download(userinput,miners_ravine,dry_creek)
+
+        pdf_download(userinput,miners_ravine,dry_creek)
 elif selected_tab=="eDNA results":
     st.title("Environmental DNA (eDNA) Analysis")
     st.subheader("New Zealand Mudsnails")
