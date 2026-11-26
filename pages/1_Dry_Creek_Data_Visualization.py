@@ -743,7 +743,86 @@ elif selected_tab=="Parameter deep dive":
         #st.image()
     site=site.copy()
     site.sort_values('Date')
+    fig=px.scatter(
+        site,
+        x=site['Date'],
+        y=site['Water Temp'],
+        labels={"Date":"Date","Water Temp":"Water Temp"}
+    )
+    fig.update_traces(marker=dict(color="#8B4513",opacity=1,size=16,symbol="circle")
+                     
+                     )
+    fig.update_layout(
+            yaxis_range=[10,30],
+            xaxis=dict(tickformat="%m/%d/%Y"),
+            shapes=[
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=10,y1=13,fillcolor="#005500",opacity=0.5,layer="below",line_width=0),
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=13,y1=14,fillcolor="#00AA00",opacity=0.5,layer="below",line_width=0),
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=14,y1=16,fillcolor="#00DE00",opacity=0.5,layer="below",line_width=0),
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=16,y1=18,fillcolor="#00FF00",opacity=0.5,layer="below",line_width=0),
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=18,y1=21,fillcolor="yellow",opacity=0.5,layer="below",line_width=0),
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=21,y1=30,fillcolor="red",opacity=0.5,layer="below",line_width=0)
+
+            ]
+        )
+    chart=st.plotly_chart(fig,use_container_width=True,selection_mode="points",key=f"{site} Water Temperature",on_select="rerun")
+
+    if chart and chart.get('selection',{}).get('points'):
+        point=chart['selection']['points'][0]
+        if point.get('y')>20:
+            temp_healthy="Too warm for Salmon survival"
         
+        elif point.get('y')>16:
+            temp_healthy="Upper limit for Juveniles"
+        else:
+            if point.get('y')>14:
+                temp_healthy="Helathy for spawning"
+            elif point.get('y')<14:
+                temp_healthy="Healthy for Salmon egg incubation period"
+        st.info(f"Date: {point.get('x')} Water Temperature: {point.get('y')}, {temp_healthy}")
+    st.markdown("""**Water Temperature**
+    
+
+    What it measures: The thermal condition of the water body.
+
+    Why it matters: Temperature controls metabolic rates in aquatic life and directly dictates Dissolved Oxygen saturation levels. Elevated temperatures often result from lack of riparian tree canopy or warm urban stormwater runoff.
+
+    Thresholds:
+<div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="min-width: 16px; height: 16px; background-color: rgba(0, 85, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
+        <span><strong>Salmon egg incubation period:</strong> &lt; 13.0°C</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="min-width: 16px; height: 16px; background-color: rgba(0, 170, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
+        <span><strong>Salmon Spawning:</strong> 13.0 - 14.0°C</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="min-width: 16px; height: 16px; background-color: rgba(0, 222, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
+        <span><strong>Juvenile Salmon:</strong> 14.0 - 16.0°C</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="min-width: 16px; height: 16px; background-color: rgba(0, 255, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
+        <span><strong>Adult Salmon:</strong> 16.0 - 18.0°C</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="min-width: 16px; height: 16px; background-color: rgba(255, 255, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
+        <span><strong>High Stress:</strong>18.0 - 21.0°C</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="min-width: 16px; height: 16px; background-color: rgba(255, 8.585, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
+        <span><strong>E:</strong> &gt; "Too Warm For Salmon"> 21°C</span>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+""",unsafe_allow_html=False)
     fig4=px.scatter(
             site,
             x=site['Date'],
@@ -954,71 +1033,7 @@ Thresholds:
 """,unsafe_allow_html=False)
     st.space("small")
         
-    fig=px.scatter(
-    site,
-    x=site['Date'],
-    y=site['Water Temp'],
-    labels={"Date":"Date","Water Temp":"Water Temp"}
-    )
-    fig.update_traces(marker=dict(color="#8B4513",opacity=1,size=16,symbol="circle")
 
-        )
-    fig.update_layout(
-            yaxis_range=[10,30],
-            xaxis=dict(tickformat="%m/%d/%Y"),
-            shapes=[
-                dict(xref="paper",yref="y",x0=0,x1=1,y0=10,y1=13,fillcolor="#005500",opacity=0.5,layer="below",line_width=0),
-                dict(xref="paper",yref="y",x0=0,x1=1,y0=13,y1=14,fillcolor="#00AA00",opacity=0.5,layer="below",line_width=0),
-                dict(xref="paper",yref="y",x0=0,x1=1,y0=14,y1=16,fillcolor="#00FE00",opacity=0.5,layer="below",line_width=0),
-                dict(xref="paper",yref="y",x0=0,x1=1,y0=16,y1=18,fillcolor="#00FF00",opacity=0.5,layer="below",line_width=0),
-                dict(xref="paper",yref="y",x0=0,x1=1,y0=18,y1=21,fillcolor="yellow",opacity=0.5,layer="below",line_width=0),
-                dict(xref="paper",yref="y",x0=0,x1=1,y0=20,y1=30,fillcolor="red",opacity=0.5,layer="below",line_width=0)
-
-            ]
-        )
-    chart=st.plotly_chart(fig,use_container_width=True,selection_mode="points",key=f"{site} Water Temperature",on_select="rerun")
-
-    if chart and chart.get('selection',{}).get('points'):
-        point=chart['selection']['points'][0]
-        if point.get('y')>20:
-            temp_healthy="Too warm for Salmon survival"
-        
-        elif point.get('y')>16:
-            temp_healthy="Upper limit for Juveniles"
-        else:
-            if point.get('y')>14:
-                temp_healthy="Helathy for spawning"
-            elif point.get('y')<14:
-                temp_healthy="Healthy for Salmon egg incubation period"
-        st.info(f"Date: {point.get('x')} Water Temperature: {point.get('y')}, {temp_healthy}")
-    st.markdown("""**Water Temperature**
-    
-
-    What it measures: The thermal condition of the water body.
-
-    Why it matters: Temperature controls metabolic rates in aquatic life and directly dictates Dissolved Oxygen saturation levels. Elevated temperatures often result from lack of riparian tree canopy or warm urban stormwater runoff.
-
-    Thresholds:
-     🟩Salmon egg incubation period: < 13.0°C
-
-    🟩Spawning:  <14.0°C
-
-    🟩Juveniles <16.0°C
-
-    🟩Adult Salmon: < 18.0°C (64.4°F)
-
-    🟨 Elevated Stress Zone: 18.0°C – 21.0°C
-
-    🟥 High Thermal Stress: > 21.0°C (Significantly reduces oxygen-holding capacity)
-
-
-
-
-
-
-
-""",unsafe_allow_html=False)
-    st.space("small")
 
     
     fig8=px.line(site,x=site["Date"],y=site["Air Temp"],markers=True,labels={"Date":"date","Air Temp":"Air Temp"})
