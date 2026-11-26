@@ -343,7 +343,7 @@ if selected_tab=="Overview":
             )
         with col5:
             temp_healthy=(
-                "Healthy For Salmon Incubation"
+                "Healthy For the Salmon egg Incubation period"
                 if latest_temp<=13
                 else("Healthy for salmon spawning" if latest_temp<14 else ("Unhealthy for Spawning, healthy for juveniles" if latest_temp<=16 else("Stressful" if latest_temp <=20 else("High Risk"))))
             )
@@ -453,9 +453,9 @@ if selected_tab=="Overview":
             )
         with col5:
             temp_healthy=(
-                "Healthy for Incubation"
+                "Healthy For the Salmon egg Incubation period"
                 if  latest_temp<=13.5
-                else("Healthy for salmon spawning" if latest_temp<14 else ("Unhealthy for Spawning, healthy for juveniles" if latest_temp<=16 else("Stressful" if latest_temp <=20 else("High Risk"))))
+                else("Healthy for salmon spawning" if latest_temp<14 else ("Unhealthy for Spawning, healthy for juveniles" if latest_temp<=16 else("Healthy for Adult Salmon" if latest_temp <=20 else("High Risk"))))
             )
             color=(
                 "normal"if latest_temp<=16 else"inverse"
@@ -563,9 +563,9 @@ if selected_tab=="Overview":
             )
         with col5:
             temp_healthy=(
-                "Healthy for incubation"
+                "Healthy For the Salmon egg Incubation period"
                 if  latest_temp<=13
-                else("Healthy for salmon spawning" if latest_temp<14 else ("Unhealthy for Spawning, healthy for juveniles" if latest_temp<=16 else("Stressful" if latest_temp <=20 else("High Risk"))))
+                else("Healthy for salmon spawning" if latest_temp<14 else ("Unhealthy for Spawning, healthy for juveniles" if latest_temp<=16 else("Healthy for Adult salmon" if latest_temp <=20 else("High Risk"))))
             )
             color=(
                 "normal" if latest_temp<=16 else"inverse"
@@ -781,11 +781,11 @@ Why it matters: As water temperature rises, its capacity to hold oxygen drops. L
 
 Thresholds:
 
-Healthy: > 7.0 mg/L (Supports thriving aquatic life and salmonid requirements)
+🟩 Healthy: > 7.0 mg/L (Supports thriving aquatic life and salmonid requirements)
 
-Moderate Stress: 5.0 to 7.0 mg/L
+🟨 Moderate Stress: 5.0 to 7.0 mg/L
 
-Critical / Hypoxia: < 5.0 mg/L (Causes severe stress or fish kills)
+🟥 Critical / Hypoxia: < 5.0 mg/L (Causes severe stress or fish kills)
 
 
 
@@ -832,11 +832,11 @@ Why it matters: High conductivity spikes during dry weather can indicate illicit
 
 Thresholds:
 
-Natural Baseline: 100 to 300 µS/cm (Typical for Sierra foothill-fed valley streams)
+🟩Natural Baseline: 100 to 300 µS/cm (Typical for Sierra foothill-fed valley streams)
 
-Elevated Urban Impact: 300 to 500 µS/cm
+🟨Elevated Urban Impact: 300 to 500 µS/cm
 
-Significant Runoff Pollution: > 500 µS/cm
+🟥Significant Runoff Pollution: > 500 µS/cm
 
 
 
@@ -886,11 +886,11 @@ Why it matters: Extreme pH levels (too acidic or too basic) can release toxic he
 
 Thresholds:
 
-Healthy Basin Standard: 6.5 to 8.5 (Central Valley Regional Water Quality Control Board standard for inland surface waters)
+🟩 Healthy Basin Standard: 6.5 to 8.5 (Central Valley Regional Water Quality Control Board standard for inland surface waters)
 
-Acidic Warning: < 6.5
+🟥Acidic Warning: < 6.5
 
-Alkaline Warning: > 8.5
+🟥Alkaline Warning: > 8.5
 
 
 
@@ -940,13 +940,13 @@ Why it matters: High turbidity blocks sunlight needed by aquatic plants and can 
 
 Thresholds:
 
-Clear / Base Flow: < 10 NTU
+🟩 Clear / Base Flow: < 10 NTU
 
-Moderate Runoff / Storm Impact: 10 to 50 NTU
+🟨 Moderate Runoff / Storm Impact: 10 to 50 NTU
 
-Heavy Erosion / Storm Event: > 50 NTU
+🟥   Heavy Erosion / Storm Event: > 50 NTU
 
-
+🟩🟨🟥
 
 
 
@@ -970,7 +970,8 @@ Heavy Erosion / Storm Event: > 50 NTU
                 dict(xref="paper",yref="y",x0=0,x1=1,y0=10,y1=13,fillcolor="#005500",opacity=0.5,layer="below",line_width=0),
                 dict(xref="paper",yref="y",x0=0,x1=1,y0=13,y1=14,fillcolor="#00AA00",opacity=0.5,layer="below",line_width=0),
                 dict(xref="paper",yref="y",x0=0,x1=1,y0=14,y1=16,fillcolor="#00FE00",opacity=0.5,layer="below",line_width=0),
-                dict(xref="paper",yref="y",x0=0,x1=1,y0=16,y1=20,fillcolor="yellow",opacity=0.5,layer="below",line_width=0),
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=16,y1=18,fillcolor="#00FF00",opacity=0.5,layer="below",line_width=0),
+                dict(xref="paper",yref="y",x0=0,x1=1,y0=18,y1=21,fillcolor="yellow",opacity=0.5,layer="below",line_width=0),
                 dict(xref="paper",yref="y",x0=0,x1=1,y0=20,y1=30,fillcolor="red",opacity=0.5,layer="below",line_width=0)
 
             ]
@@ -988,21 +989,27 @@ Heavy Erosion / Storm Event: > 50 NTU
             if point.get('y')>14:
                 temp_healthy="Helathy for spawning"
             elif point.get('y')<14:
-                temp_healthy="Healthy for incubation"
+                temp_healthy="Healthy for Salmon egg incubation period"
         st.info(f"Date: {point.get('x')} Water Temperature: {point.get('y')}, {temp_healthy}")
     st.markdown("""**Water Temperature**
+    
 
-What it measures: The thermal condition of the water body.
+    What it measures: The thermal condition of the water body.
 
-Why it matters: Temperature controls metabolic rates in aquatic life and directly dictates Dissolved Oxygen saturation levels. Elevated temperatures often result from lack of riparian tree canopy or warm urban stormwater runoff.
+    Why it matters: Temperature controls metabolic rates in aquatic life and directly dictates Dissolved Oxygen saturation levels. Elevated temperatures often result from lack of riparian tree canopy or warm urban stormwater runoff.
 
-Thresholds:
+    Thresholds:
+     🟩Salmon egg incubation period: < 13.0°C
 
-Optimal Coldwater Habitat: < 18.0°C (64.4°F)
+    🟩Spawning:  <14.0°C
 
-Elevated Stress Zone: 18.0°C – 21.0°C
+    🟩Juveniles <16.0°C
 
-High Thermal Stress: > 21.0°C (Significantly reduces oxygen-holding capacity)
+    🟩Adult Salmon: < 18.0°C (64.4°F)
+
+    🟨 Elevated Stress Zone: 18.0°C – 21.0°C
+
+    🟥 High Thermal Stress: > 21.0°C (Significantly reduces oxygen-holding capacity)
 
 
 
@@ -1012,12 +1019,7 @@ High Thermal Stress: > 21.0°C (Significantly reduces oxygen-holding capacity)
 
 """,unsafe_allow_html=False)
     st.space("small")
-    temp=(
-        site.groupby("Water Level",as_index=False)['Water Temp']
-        .mean()
-    )
-    fig=px.bar(temp,x="Water Level",y="Water Temp",color="Water Level",labels={"Water Level":"Flow","Water Temp":"Water Temp"})
-    st.plotly_chart(fig)
+
     
     fig8=px.line(site,x=site["Date"],y=site["Air Temp"],markers=True,labels={"Date":"date","Air Temp":"Air Temp"})
     fig8.update_traces(
