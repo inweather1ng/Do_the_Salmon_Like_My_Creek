@@ -592,7 +592,25 @@ if selected_tab=="Overview":
     wms_time=(
         local_dt.astimezone(timezone.utc).replace(minute=0,second=0).strftime("%Y-%m-%dT%H:%M:%SZ")
     )
-    
+    mapdata = pd.DataFrame(
+    {
+        "latitude": [38.752945, 38.742738, 38.759216],
+        "longitude": [-121.241526, -121.284156, -121.256444],
+        "label": ["Miners Ravine", "Saugstad park", "Confluence"],
+        "fill": [
+            "green" if miners_status == "Healthy" else "red",
+            "green" if dry_status == "Healthy" else "red",
+            "green" if sr_status == "Healthy" else "red",
+        ],
+        "health_status": [miners_status, dry_status, sr_status],
+        "site": [
+            "Miners Ravine at Orivetto Drive",
+            "Dry Creek at Saugstad",
+            "Secret Ravine near Confluence",
+        ],
+        }
+    )
+
     dry_creek_health = dry_lat['DO']>7 and dry_lat['PH'] > 6.5 and dry_lat['PH']<8.5 and dry_lat['Turbidity']<25 and dry_lat['Water Temp']<18 and dry_lat["SPC"]<300
     sr_lat=secret_ravine.iloc[-1]
     sr_health = sr_lat['DO']>7 and sr_lat['PH'] > 6.5 and sr_lat['PH']<8.5 and sr_lat['Turbidity']<25 and sr_lat['Water Temp']<18 and sr_lat["SPC"]<300
