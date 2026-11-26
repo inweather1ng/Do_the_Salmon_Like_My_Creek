@@ -46,7 +46,7 @@ if "dry creek" in st.session_state and "miners ravine" in st.session_state and "
         c2.metric("Conductivity", f"{latest['SPC']} µS/cm", "Healthy < 300")
         c3.metric("PH", f"{latest['PH']}", "Normal 6.5-8.5")
         c4.metric("Turbidity", f"{latest['Turbidity']} NTU", "Clear < 10" if latest["Turbidity"] <= 10 else ("Cloudy (10-50 NTU)" if latest["Turbidity"] <= 50 else "High > 50 NTU"), delta_color="normal" if latest["Turbidity"] <= 10 else ("off" if latest["Turbidity"] <= 50 else "inverse"))
-        c5.metric("Water Temp", f"{latest['Water Temp']} °C", "Unhealthy" if latest['Water Temp']>18 else("Healthy For Spring Season" if latest['Water Temp']>13.5 else("Healthy for salmon spawning Season <13.5 C")))
+        c5.metric("Water Temp", f"{latest['Water Temp']} °C", "Unhealthy" if latest['Water Temp']>21 else("Stressful" if latest['Water Temp']>18 else("Healthy for Adult salmon" if latest['Water Temp']>16 else("Healthy for juveniles" if latest['Water Temp']>14 else("Healthy For Salmon Spawning" if latest['Water Temp']>13 else("Healthy for Salmon Egg Incubation Period"))))))
         st.page_link("pages/1_Dry_Creek_Data_Visualization.py", label="Click here to view full charts & tabs →")
 with st.container(border=True,width="content"):
     st.header(":red[Demo Alert!]",divider="blue")
