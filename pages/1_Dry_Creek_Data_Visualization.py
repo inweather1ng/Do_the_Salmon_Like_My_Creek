@@ -578,6 +578,21 @@ if selected_tab=="Overview":
             )
     miners_lat=miners_ravine.iloc[-1]
     miners_ravine_health = miners_lat['DO']>7 and miners_lat['PH'] > 6.5 and miners_lat['PH']<8.5 and miners_lat['Turbidity']<25 and miners_lat['Water Temp']<18 and miners_lat["SPC"]<300
+    dry_creek_health = dry_lat['DO']>7 and dry_lat['PH'] > 6.5 and dry_lat['PH']<8.5 and dry_lat['Turbidity']<25 and dry_lat['Water Temp']<18 and dry_lat["SPC"]<300
+    sr_lat=secret_ravine.iloc[-1]
+    sr_health = sr_lat['DO']>7 and sr_lat['PH'] > 6.5 and sr_lat['PH']<8.5 and sr_lat['Turbidity']<25 and sr_lat['Water Temp']<18 and sr_lat["SPC"]<300
+    if miners_ravine_health:
+        miners_status = "Healthy"
+    else:
+        miners_status = "Stressed"
+    if dry_creek_health:
+        dry_status="Healthy"
+    else:
+        dry_status="Stressed"
+    if sr_health:
+        sr_status="Healthy"
+    else:
+        sr_status="Stressed"
     dry_lat=dry_creek.iloc[-1]
     row=secret_ravine.iloc[-1]
     hoursom,minute=map(int,str(row["Start"]).split(':'))
@@ -612,21 +627,7 @@ if selected_tab=="Overview":
     )
 
 
-    dry_creek_health = dry_lat['DO']>7 and dry_lat['PH'] > 6.5 and dry_lat['PH']<8.5 and dry_lat['Turbidity']<25 and dry_lat['Water Temp']<18 and dry_lat["SPC"]<300
-    sr_lat=secret_ravine.iloc[-1]
-    sr_health = sr_lat['DO']>7 and sr_lat['PH'] > 6.5 and sr_lat['PH']<8.5 and sr_lat['Turbidity']<25 and sr_lat['Water Temp']<18 and sr_lat["SPC"]<300
-    if miners_ravine_health:
-        miners_status = "Healthy"
-    else:
-        miners_status = "Stressed"
-    if dry_creek_health:
-        dry_status="Healthy"
-    else:
-        dry_status="Stressed"
-    if sr_health:
-        sr_status="Healthy"
-    else:
-        sr_status="Stressed"
+
     # st.title("Dry creek water quality monitoring Site map")
     st.header("This is a map of our three sampling sites along the Dry Creek Watershed.")
     st.write("Click on a point to view data by parameter for that site")
