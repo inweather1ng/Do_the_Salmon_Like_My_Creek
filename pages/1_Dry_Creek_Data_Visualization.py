@@ -783,11 +783,11 @@ elif selected_tab=="Parameter deep dive":
     st.markdown("""**Water Temperature**
     
 
-    What it measures: The thermal condition of the water body.
+What it measures: The thermal condition of the water body.
 
-    Why it matters: Temperature controls metabolic rates in aquatic life and directly dictates Dissolved Oxygen saturation levels. Elevated temperatures often result from lack of riparian tree canopy or warm urban stormwater runoff.
+Why it matters: Temperature controls metabolic rates in aquatic life and directly dictates Dissolved Oxygen saturation levels. Elevated temperatures often result from lack of riparian tree canopy or warm urban stormwater runoff.
 
-    Thresholds:
+Thresholds:
 <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
     <div style="display: flex; align-items: center; gap: 10px;">
         <span style="min-width: 16px; height: 16px; background-color: rgba(0, 85, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
@@ -811,18 +811,18 @@ elif selected_tab=="Parameter deep dive":
     </div>
     <div style="display: flex; align-items: center; gap: 10px;">
         <span style="min-width: 16px; height: 16px; background-color: rgba(255, 8.585, 0, 0.5); border: 1px solid #005500; border-radius: 3px; display: inline-block;"></span>
-        <span><strong>E:</strong> &gt; "Too Warm For Salmon"> 21°C</span>
+        <span><strong></strong> &gt; "Too Warm For Salmon"> 21°C</span>
     </div>
 </div>
 
 
 
+#E:
 
 
 
 
-
-""",unsafe_allow_html=False)
+""",unsafe_allow_html=True)
     fig4=px.scatter(
             site,
             x=site['Date'],
