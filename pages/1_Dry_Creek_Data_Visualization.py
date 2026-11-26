@@ -635,8 +635,7 @@ if selected_tab=="Overview":
     st.write("Click on a point to view data by parameter for that site")
 
 
-    from PIL import Image
-    import requests
+  
 
 
     # 1. Convert secret_ravine's local Date + Start ("10:38") from Pacific Time to UTC (rounded to the hour)
@@ -668,7 +667,7 @@ if selected_tab=="Overview":
     folium.LayerControl().add_to(m)
     map_out = st_folium(m, height=400, width=700, )
 
-    folium.LayerControl().add_to(map)
+    
 
     
     
