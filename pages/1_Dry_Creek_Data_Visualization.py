@@ -618,11 +618,12 @@ if selected_tab=="Overview":
         control=True,
     
     ).add_to(map)
+    folium.LayerControl().add_to(map)
     for idx,row in mapdata.iterrows():
         folium.CircleMarker(location=[row["latitude"],row["longitude"]],color=row['fill'],fill=True,fill_color=row['fill'],tooltip=f"{row['label']} status: {row['health_status']}",fill_opacity=0.8).add_to(map)
     map_out=st_folium(map,height=400,width=700)
     
-    folium.LayerControl().add_to(map)
+    
 
     if map_out and  map_out.get("last_object_clicked"):
         clicked_lat=map_out["last_object_clicked"]['lat']
