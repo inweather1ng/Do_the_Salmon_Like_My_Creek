@@ -618,67 +618,20 @@ if selected_tab=="Overview":
 
 
     # 1. Convert secret_ravine's local Date + Start ("10:38") from Pacific Time to UTC (rounded to the hour)
-    sample_row = secret_ravine.iloc[-1]
-    hour, minute = map(int, str(sample_row["Start"]).split(":"))
 
-    local_dt = datetime(
-    sample_row["Date"].year,
-    sample_row["Date"].month,
-    sample_row["Date"].day,
-    hour,
-    minute,
-    tzinfo=ZoneInfo("America/Los_Angeles"),
-    )
-    utc_dt = local_dt.astimezone(timezone.utc).replace(minute=0, second=0)
+
+
 
 # 2. Fetch IEM's archived 24h MRMS PNG + world file (.wld) for that exact UTC hour
-    base_url = utc_dt.strftime(
-    "https://iastate.edu"
-    )
 
-    @st.cache_data(ttl=3600)
-    def load_local_mrms_overlay(url_prefix, lat_bounds=(38.55, 38.95), lon_bounds=(-121.55, -121.00)):
-        png_resp = requests.get(f"{url_prefix}.png", timeout=10)
-        wld_resp = requests.get(f"{url_prefix}.wld", timeout=10)
-        if png_resp.status_code != 200 or wld_resp.status_code != 200:
-            return None, None
 
-    # .wld lines: [pixel_width, rot_y, rot_x, pixel_height (negative), top_left_lon, top_left_lat]
-        dx, _, _, dy, ul_lon, ul_lat = map(float, wld_resp.text.strip().splitlines())
 
-        img = Image.open(BytesIO(png_resp.content))
-        idx_arr = np.array(img)
-        rgba = np.array(img.convert("RGBA"))
-        rgba[idx_arr == 0, 3] = 0  # Make 0 mm (no rain) transparent
-
-    # Crop to Roseville / Dry Creek watershed bounding box
-        col_min = max(0, int((lon_bounds[0] - ul_lon) / dx))
-        col_max = min(rgba.shape[1], int((lon_bounds[1] - ul_lon) / dx))
-        row_min = max(0, int((lat_bounds[1] - ul_lat) / dy))
-        row_max = min(rgba.shape[0], int((lat_bounds[0] - ul_lat) / dy))
-
-        cropped = rgba[row_min:row_max, col_min:col_max]
-        exact_bounds = [
-            [ul_lat + row_max * dy, ul_lon + col_min * dx],  # Southwest [lat, lon]
-            [ul_lat + row_min * dy, ul_lon + col_max * dx],  # Northeast [lat, lon]
-        ]
-        return cropped, exact_bounds
 
 # 3. Render map with timestamped accumulation overlay + your 3 creek sites
     m = folium.Map(location=[38.75, -121.26], zoom_start=13)
 
-    rain_img, rain_bounds = load_local_mrms_overlay(base_url)
-    if rain_img is not None:
-        folium.raster_layers.ImageOverlay(
-            image=rain_img,
-            bounds=rain_bounds,
-            opacity=0.65,
-            name=f"24h Rain ending {local_dt.strftime('%Y-%m-%d %H:00 %Z')}",
-            overlay=True,
-            control=True,
-    ).add_to(m)
-    else:
-        st.warning(f"No archived MRMS rainfall grid found for {utc_dt.strftime('%Y-%m-%d %H:00 UTC')}.")
+
+
 
     for idx, row in mapdata.iterrows():
         folium.CircleMarker(
