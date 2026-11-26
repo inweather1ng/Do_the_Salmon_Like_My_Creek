@@ -580,12 +580,12 @@ if selected_tab=="Overview":
     miners_ravine_health = miners_lat['DO']>7 and miners_lat['PH'] > 6.5 and miners_lat['PH']<8.5 and miners_lat['Turbidity']<25 and miners_lat['Water Temp']<18 and miners_lat["SPC"]<300
     dry_lat=dry_creek.iloc[-1]
     row=secret_ravine.iloc[-1]
-    hours,minute=map(int,str(row["Start"]).split(':'))
+    hoursom,minute=map(int,str(row["Start"]).split(':'))
     local_dt=datetime(
         row["Date"].year,
         row["Date"].month,
         row['Date'].day,
-        hour,
+        hoursom,
         minute,
         tzinfo=ZoneInfo("America/Los_Angeles"),
     )
