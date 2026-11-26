@@ -589,10 +589,7 @@ if selected_tab=="Overview":
         minute,
         tzinfo=ZoneInfo("America/Los_Angeles"),
     )
-    wms_time=(
-        local_dt.astimezone(timezone.utc).replace(minute=0,second=0).strftime("%Y-%m-%dT%H:%M:%SZ")
-    )
-    mapdata = pd.DataFrame(
+        mapdata = pd.DataFrame(
     {
         "latitude": [38.752945, 38.742738, 38.759216],
         "longitude": [-121.241526, -121.284156, -121.256444],
@@ -610,6 +607,10 @@ if selected_tab=="Overview":
         ],
         }
     )
+    wms_time=(
+        local_dt.astimezone(timezone.utc).replace(minute=0,second=0).strftime("%Y-%m-%dT%H:%M:%SZ")
+    )
+
 
     dry_creek_health = dry_lat['DO']>7 and dry_lat['PH'] > 6.5 and dry_lat['PH']<8.5 and dry_lat['Turbidity']<25 and dry_lat['Water Temp']<18 and dry_lat["SPC"]<300
     sr_lat=secret_ravine.iloc[-1]
