@@ -1,6 +1,8 @@
 import matplotlib.dates as mdates
 import matplotlib
 import pandas as pd
+from datetime import datetime,timezone
+from zoneinfo import ZoneInfo
 import streamlit.components.v1 as components
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -577,6 +579,20 @@ if selected_tab=="Overview":
     miners_lat=miners_ravine.iloc[-1]
     miners_ravine_health = miners_lat['DO']>7 and miners_lat['PH'] > 6.5 and miners_lat['PH']<8.5 and miners_lat['Turbidity']<25 and miners_lat['Water Temp']<18 and miners_lat["SPC"]<300
     dry_lat=dry_creek.iloc[-1]
+    row=secret_ravine.iloc[-1]
+    hours,minute=map(int,str(row["Start"]).split(':'))
+    local_dt=datetime(
+        row["Date"].year,
+        row["Date"].month,
+        row['Date'].day,
+        hour,
+        minute,
+        tzinfo=ZoneInfo("America/Los_Angeles"),
+    )
+    wms_time=(
+        local_dt.astimezone(timezone.utc).replace(minute=0,second=0).strftime("%Y-%m-%dT%H%M$SZ")
+    )
+    
     dry_creek_health = dry_lat['DO']>7 and dry_lat['PH'] > 6.5 and dry_lat['PH']<8.5 and dry_lat['Turbidity']<25 and dry_lat['Water Temp']<18 and dry_lat["SPC"]<300
     sr_lat=secret_ravine.iloc[-1]
     sr_health = sr_lat['DO']>7 and sr_lat['PH'] > 6.5 and sr_lat['PH']<8.5 and sr_lat['Turbidity']<25 and sr_lat['Water Temp']<18 and sr_lat["SPC"]<300
@@ -608,10 +624,11 @@ if selected_tab=="Overview":
     )
     map=folium.Map(location=[38.75,-121.26],zoom_start=13)
     WmsTileLayer(
-        url="https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
-        layers="nexrad-n0r-900913",
+        url="https://iastate.edu",
+        layers="mrms_p24h",
         format="image/png",
         transparent=True,
+        time=wms_time,
         attr="Weather data © Iowa State University",
         name="Precipitation",
         overlay=True,
