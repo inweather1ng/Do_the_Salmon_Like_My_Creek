@@ -666,7 +666,7 @@ if selected_tab=="Overview":
         ).add_to(m)
 
     folium.LayerControl().add_to(m)
-    map_out = st_folium(m, height=400, width=700, key=f"map_{utc_dt.strftime('%Y%m%d%H')}")
+    map_out = st_folium(m, height=400, width=700, )
 
     folium.LayerControl().add_to(map)
 
