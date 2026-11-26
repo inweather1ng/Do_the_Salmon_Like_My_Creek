@@ -18,7 +18,7 @@ import smtplib
 from email.message import EmailMessage
 from profanity_check import predict,predict_prob
 import streamlit.components.v1 as components
-
+from folium.raster_layers import WmsTileLayer
 qpcr=pd.read_csv("QPCR.csv")
 st.markdown(
     """
