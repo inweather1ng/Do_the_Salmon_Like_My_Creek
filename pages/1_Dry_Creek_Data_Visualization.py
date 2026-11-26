@@ -607,9 +607,23 @@ if selected_tab=="Overview":
          }
     )
     map=folium.Map(location=[38.75,-121.26],zoom_start=13)
+    WmsLayer(
+        url="https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
+        layers="nexrad-n0r-900q",
+        format="image/png",
+        transparent=True,
+        attr="Weather data © Iowa State University",
+        name="Precipitation",
+        overlay=True:
+        control=True,
+    
+    ).add_to(map)
     for idx,row in mapdata.iterrows():
         folium.CircleMarker(location=[row["latitude"],row["longitude"]],color=row['fill'],fill=True,fill_color=row['fill'],tooltip=f"{row['label']} status: {row['health_status']}",fill_opacity=0.8).add_to(map)
     map_out=st_folium(map,height=400,width=700)
+    
+    folium.LayerControl().add_to(map)
+
     if map_out and  map_out.get("last_object_clicked"):
         clicked_lat=map_out["last_object_clicked"]['lat']
         match=mapdata[abs(mapdata['latitude']-clicked_lat)<0.001].dropna()
@@ -620,7 +634,7 @@ if selected_tab=="Overview":
             st.rerun()
     st.caption("Click a sampling site to see its charts. Green = latest sample healthy, red = something needs attention, gray = reference point (not sampled).")
 
-
+    
 
 
         
