@@ -589,7 +589,7 @@ if selected_tab=="Overview":
         minute,
         tzinfo=ZoneInfo("America/Los_Angeles"),
     )
-        mapdata = pd.DataFrame(
+    mapdata = pd.DataFrame(
     {
         "latitude": [38.752945, 38.742738, 38.759216],
         "longitude": [-121.241526, -121.284156, -121.256444],
