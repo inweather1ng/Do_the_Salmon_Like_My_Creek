@@ -7,8 +7,17 @@ st.markdown('<style>[data-testid="stToolbarActions"], [data-testid="stMainMenu"]
 st.title("Do the Salmon like my creek?")
 st.header("A Water Quality and Environmental DNA (eDNA) Data Visualization and Analysis Tool.\n")
 st.caption("If on mobile, click on the chevron (>>) on the top left to navigate")
-st.markdown("**Adopted by [Dry Creek Conservancy](https://www.drycreekconservancy.org/projects-resources/) as a community resource**")
-
+st.markdown(
+    """
+    <p style="font-size: 24px; font-weight: bold; margin-bottom: 4px;">
+        Adopted by <a href="https://www.drycreekconservancy.org/projects-resources/">Dry Creek Conservancy</a> as a community resource
+    </p>
+    <p style="font-size: 20px; font-weight: bold;">
+        Featured at Roseville Salmon homecoming weekend November 1st
+    </p>
+    """,
+    unsafe_allow_html=True
+)
 
 
 
