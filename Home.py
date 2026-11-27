@@ -9,7 +9,7 @@ st.header("A Water Quality and Environmental DNA (eDNA) Data Visualization and A
 st.caption("If on mobile, click on the chevron (>>) on the top left to navigate")
 st.html(
     """
-    <p style="font-size: 24px; font-weight: bold; margin-bottom: 4px;">
+    <p style="font-size: 30px; font-weight: bold; margin-bottom: 4px;">
         Adopted by <a href="https://www.drycreekconservancy.org/projects-resources/">Dry Creek Conservancy</a> as a community resource
     </p>
     """
