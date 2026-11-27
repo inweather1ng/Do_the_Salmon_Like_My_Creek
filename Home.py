@@ -11,10 +11,11 @@ st.html(
     """
     <p style="font-size: 30px; font-weight: bold; margin-bottom: 4px;">
         Adopted by <a href="https://www.drycreekconservancy.org/projects-resources/">Dry Creek Conservancy</a> as a community resource
+        <br>
+        <span style="font-size: 20px;">Featured at Roseville Salmon homecoming weekend November 1st</span>
     </p>
     """
 )
-st.markdown("#### Featured at Roseville Salmon homecoming weekend November 1st")
 
 
 if "dry creek" not in st.session_state or "miners ravine" not in st.session_state:
