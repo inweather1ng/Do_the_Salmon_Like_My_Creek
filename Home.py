@@ -12,12 +12,9 @@ st.html(
     <p style="font-size: 24px; font-weight: bold; margin-bottom: 4px;">
         Adopted by <a href="https://www.drycreekconservancy.org/projects-resources/">Dry Creek Conservancy</a> as a community resource
     </p>
-    <p style="font-size: 20px; font-weight: bold;">
-        Featured at Roseville Salmon homecoming weekend November 1st
-    </p>
     """
 )
-
+st.markdown("#### Featured at Roseville Salmon homecoming weekend November 1st")
 
 
 if "dry creek" not in st.session_state or "miners ravine" not in st.session_state:
